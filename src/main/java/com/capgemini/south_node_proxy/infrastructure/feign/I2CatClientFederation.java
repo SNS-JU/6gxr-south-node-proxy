@@ -2,7 +2,6 @@ package com.capgemini.south_node_proxy.infrastructure.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,43 +23,54 @@ public interface I2CatClientFederation {
 			@RequestBody FederationContextIdZonesBody requestBody,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
 
-	@PostMapping("/partner")
-	ResponseEntity<Object> createPartner(@RequestBody Object partner, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PostMapping("/{federationContextId}/zones")
-	ResponseEntity<Object> createZone(@PathVariable("federationContextId") String federationContextId, @RequestBody Object zone,
+	@PostMapping(value = "/partner", consumes = "application/json", produces = "application/json")
+	Object createPartner(@RequestBody Object partner,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PostMapping("/{federationContextId}/artefact")
-	ResponseEntity<Object> createArtefact(@PathVariable("federationContextId") String federationContextId, @RequestBody Object artefact,
-			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PostMapping("/{federationContextId}/application/onboarding")
-	ResponseEntity<Object> onboardApplication(@PathVariable("federationContextId") String federationContextId,
+
+	@PostMapping(value = "/{federationContextId}/zones", consumes = "application/json", produces = "application/json")
+	Object createZone(@PathVariable("federationContextId") String federationContextId,
+			@RequestBody Object zone, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
+
+	@PostMapping(value = "/{federationContextId}/artefact", consumes = "application/json", produces = "application/json")
+	Object createArtefact(@PathVariable("federationContextId") String federationContextId,
+			@RequestBody Object artefact, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
+
+	@PostMapping(value = "/{federationContextId}/application/onboarding", consumes = "application/json", produces = "application/json")
+	Object onboardApplication(@PathVariable("federationContextId") String federationContextId,
 			@RequestBody Object application, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PostMapping("/{federationContextId}/application/lcm")
-	ResponseEntity<Object> manageApplicationLifecycle(@PathVariable("federationContextId") String federationContextId,
+
+	@PostMapping(value = "/{federationContextId}/application/lcm", consumes = "application/json", produces = "application/json")
+	Object manageApplicationLifecycle(@PathVariable("federationContextId") String federationContextId,
 			@RequestBody Object lifecycle, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PatchMapping("/{partnerId}/partner")
-	ResponseEntity<Object> updatePartner(@PathVariable("partnerId") String partnerId, @RequestBody Object partner,
+
+	@PatchMapping(value = "/{partnerId}/partner", consumes = "application/json", produces = "application/json")
+	Object updatePartner(@PathVariable("partnerId") String partnerId, @RequestBody Object partner,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@PatchMapping("/{federationContextId}/application/onboarding/{appId}")
-	ResponseEntity<Object> updateApplicationOnboarding(@PathVariable("federationContextId") String federationContextId,
+
+	@PatchMapping(value = "/{federationContextId}/application/onboarding/{appId}", consumes = "application/json", produces = "application/json")
+	Object updateApplicationOnboarding(@PathVariable("federationContextId") String federationContextId,
 			@PathVariable("appId") String appId, @RequestBody Object application,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
 
-	@DeleteMapping("/{partnerId}/partner")
-	ResponseEntity<Void> deletePartner(@PathVariable("partnerId") String partnerId,
+	@DeleteMapping(value = "/{partnerId}/partner", consumes = "application/json", produces = "application/json")
+	Void deletePartner(@PathVariable("partnerId") String partnerId,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@DeleteMapping("/{federationContextId}/zones/{zone}")
-	ResponseEntity<Void> deleteZone(@PathVariable("federationContextId") String federationContextId,
+
+	@DeleteMapping(value = "/{federationContextId}/zones/{zone}", consumes = "application/json", produces = "application/json")
+	Void deleteZone(@PathVariable("federationContextId") String federationContextId,
 			@PathVariable("zone") String zone, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@DeleteMapping("/{federationContextId}/artefact/{artefactId}")
-	ResponseEntity<Void> deleteArtefact(@PathVariable("federationContextId") String federationContextId,
+
+	@DeleteMapping(value = "/{federationContextId}/artefact/{artefactId}", consumes = "application/json", produces = "application/json")
+	Void deleteArtefact(@PathVariable("federationContextId") String federationContextId,
 			@PathVariable("artefactId") String artefactId, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@DeleteMapping("/{federationContextId}/application/onboarding/app/{appId}/zone/{zone}")
-	ResponseEntity<Void> deleteZoneForApp(@PathVariable("federationContextId") String federationContextId,
+
+	@DeleteMapping(value = "/{federationContextId}/application/onboarding/app/{appId}/zone/{zone}", consumes = "application/json", produces = "application/json")
+	Void deleteZoneForApp(@PathVariable("federationContextId") String federationContextId,
 			@PathVariable("appId") String appId, @PathVariable("zone") String zone,
 			@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
-	@DeleteMapping("/{federationContextId}/application/lcm/app/{appId}/instance/{instanceId}/zone/{zoneId}")
-	ResponseEntity<Void> deleteAppInstanceInZone(@PathVariable("federationContextId") String federationContextId,
+
+	@DeleteMapping(value = "/{federationContextId}/application/lcm/app/{appId}/instance/{instanceId}/zone/{zoneId}", consumes = "application/json", produces = "application/json")
+	Void deleteAppInstanceInZone(@PathVariable("federationContextId") String federationContextId,
 			@PathVariable("appId") String appId, @PathVariable("instanceId") String instanceId,
 			@PathVariable("zoneId") String zoneId, @RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader);
 }

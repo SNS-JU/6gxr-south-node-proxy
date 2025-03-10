@@ -48,66 +48,66 @@ public class OperatorplatformApiController implements OperatorplatformApi {
 
 	@Override
 	public ResponseEntity<Object> createArtefact(String federationContextId, @Valid Object body, String authHeader) {
-		return this.i2CatClientFederation.createArtefact(federationContextId, body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.createArtefact(federationContextId, body, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> createPartner(@Valid Object body, String authHeader) {
-		return this.i2CatClientFederation.createPartner(body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.createPartner(body, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> manageApplicationLCM(String federationContextId, @Valid Object body,
 			String authHeader) {
-		return this.i2CatClientFederation.manageApplicationLifecycle(federationContextId, body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.manageApplicationLifecycle(federationContextId, body, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> onboardApplication(String federationContextId, @Valid Object body,
 			String authHeader) {
-		return this.i2CatClientFederation.onboardApplication(federationContextId, body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.onboardApplication(federationContextId, body, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> patchPartner(String partnerId, @Valid Object body, String authHeader) {
-		return this.i2CatClientFederation.updatePartner(partnerId, body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.updatePartner(partnerId, body, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> updateApplicationById(String federationContextId, String appId, @Valid Object body,
 			String authHeader) {
-		return this.i2CatClientFederation.updateApplicationOnboarding(federationContextId, appId, body, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.updateApplicationOnboarding(federationContextId, appId, body, authHeader), HttpStatus.OK);
 	}
 	
 	@Override
 	public ResponseEntity<Void> deleteZoneFromApp(String federationContextId, String appId, String zone,
 			String authHeader) {
-		return this.i2CatClientFederation.deleteZoneForApp(federationContextId, appId, zone, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.deleteZoneForApp(federationContextId, appId, zone, authHeader), HttpStatus.OK);
 	}
 	
 	@Override
 	public ResponseEntity<Void> deleteApplicationInstance(String federationContextId, String appId, String instanceId,
 			String zoneId, String authHeader) {
-		return this.i2CatClientFederation.deleteAppInstanceInZone(federationContextId, appId, instanceId, zoneId, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.deleteAppInstanceInZone(federationContextId, appId, instanceId, zoneId, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteArtefact(String federationContextId, String artefactId, String authHeader) {
-		return this.i2CatClientFederation.deleteArtefact(federationContextId, artefactId, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.deleteArtefact(federationContextId, artefactId, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> deletePartner(String partnerId, String authHeader) {
-		return this.i2CatClientFederation.deletePartner(partnerId, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.deletePartner(partnerId, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteZone(String federationContextId, String zone, String authHeader) {
-		return this.i2CatClientFederation.deleteZone(federationContextId, zone, authHeader);
+		return new ResponseEntity<>(this.i2CatClientFederation.deleteZone(federationContextId, zone, authHeader), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> obtainAccessToken(String clientId, String clientSecret, String grantType) {
-		return this.i2CatOpenIdConnectClient.getToken("application/x-www-form-urlencoded", clientId, clientSecret, grantType);
+		return new ResponseEntity<>(this.i2CatOpenIdConnectClient.getToken("application/x-www-form-urlencoded", clientId, clientSecret, grantType), HttpStatus.OK);
 	}
 }

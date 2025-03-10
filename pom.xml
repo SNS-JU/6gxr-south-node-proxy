@@ -6,7 +6,7 @@
 	<artifactId>sn-proxy</artifactId>
 	<packaging>jar</packaging>
 	<name>south-node-proxy</name>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<properties>
 		<java.version>22</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -82,6 +82,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 	</dependencies>
